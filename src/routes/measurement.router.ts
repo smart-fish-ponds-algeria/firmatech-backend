@@ -23,5 +23,7 @@ import { TankMeasurementController } from '../controllers/TankMeasurement.contro
 const measurementsRouter = Router()
 
 measurementsRouter.route('/').post(TankMeasurementController.createMeasurement)
+measurementsRouter.route('/tankWater/:tankId').get(TankMeasurementController.getAllTankMeasuremnts)
+measurementsRouter.route('/:measurementId').get(TankMeasurementController.getTankMeasuremnt)
 
 export default measurementsRouter

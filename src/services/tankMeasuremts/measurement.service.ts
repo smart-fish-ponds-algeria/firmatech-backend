@@ -9,7 +9,7 @@ import { formatErrString } from '../../utils/shared/FormatErrStrings'
 import { TankMeasurementsModel } from '../../db/models/TankMeasurements/TankMeasurementsI.model'
 import { TankMeasurementsI } from '../../types/tankMeasurements'
 export class TankMeasurementServices {
-  static async getTankMeasuremnt(tankId: ObjectId) {
+  static async getAllTankMeasuremnts(tankId: ObjectId) {
     try {
       const tankMeasurements = await TankMeasurementsModel.find({ tankId: tankId })
       const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
@@ -31,6 +31,20 @@ export class TankMeasurementServices {
       const msg = formatString(resp.message, tankMeasurement)
       userLogger.info(msg, { type: resp.type })
       return new SuccessResponseC(resp.type, tankMeasurement, msg, HttpCodes.Accepted.code)
+    } catch (err) {
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
+      return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
+        error: (err as Error).message,
+      })
+    }
+  }
+  static async getTankMeasuremnt(measureId: ObjectId) {
+    try {
+      const waterTank = await TankMeasurementsModel.find({ _id: measureId })
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
+      const msg = formatString(resp.message, waterTank)
+      userLogger.info(msg, { type: resp.type })
+      return new SuccessResponseC(resp.type, waterTank, msg, HttpCodes.Accepted.code)
     } catch (err) {
       const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
       return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
