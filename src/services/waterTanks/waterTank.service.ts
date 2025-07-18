@@ -107,4 +107,18 @@ export class WaterTankServices {
     }
     return waterTanksMeasures
   }
+  static async deleteWaterTank(tankId: ObjectId) {
+    try {
+      const waterTank = await WaterTankModel.deleteOne({ _id: tankId })
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
+      const msg = formatString(resp.message, waterTank)
+      userLogger.info(msg, { type: resp.type })
+      return new SuccessResponseC(resp.type, waterTank, msg, HttpCodes.Accepted.code)
+    } catch (err) {
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
+      return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
+        error: (err as Error).message,
+      })
+    }
+  }
 }
