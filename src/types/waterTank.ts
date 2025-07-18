@@ -6,6 +6,7 @@ export interface WaterTankI {
   responsible: ObjectId
   isActive: boolean
   fishDetails?: FishedDetails
+  hasSick?: boolean
   //      id integer [primary key]
   //   name varchar
   //   details varchar
@@ -19,8 +20,8 @@ export interface WaterTankDetails {
 }
 
 export interface FishedDetails {
-  total_fish_count: number
-  total_fish_sick: number
-  fish_lenght: number
-  fish_weight: number
+  total_fish_count?: number
+  total_fish_sick?: number
+  fish_lenght?: number
+  fish_weight?: number
 }

@@ -121,4 +121,28 @@ export class WaterTankServices {
       })
     }
   }
+
+  // TODO: RYAD: FIX IT SO IT WILL UPDATE IsSick only if it is false and we found sick fish
+  static async updateWaterTankFishDetails(tankId: ObjectId, weight: number, IsSick?: boolean) {
+    try {
+      let waterTank = await WaterTankModel.findOneAndUpdate({ _id: tankId })
+      if (!waterTank) throw Error('Not found')
+      waterTank.hasSick = IsSick
+      waterTank.fishDetails = {
+        ...waterTank.fishDetails,
+        fish_weight: weight,
+      }
+      await waterTank.save()
+      // const waterTank = await WaterTankModel.findByIdAndUpdate({ _id: tankId }, {})
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
+      const msg = formatString(resp.message, waterTank)
+      userLogger.info(msg, { type: resp.type })
+      return new SuccessResponseC(resp.type, waterTank, msg, HttpCodes.Accepted.code)
+    } catch (err) {
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
+      return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
+        error: (err as Error).message,
+      })
+    }
+  }
 }

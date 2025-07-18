@@ -5,8 +5,6 @@ const required = true
 
 export interface WaterTankD extends Document<WaterTankI> {}
 
-export interface WaterTankModel extends Model<WaterTankD> {}
-
 const tankDetailsSchema = new Schema<WaterTankDetails>({
   length: { type: Number, required },
   volume: { type: Number, required },
@@ -25,8 +23,9 @@ const waterTanksSchema = new Schema<WaterTankI>(
     responsible: { type: Schema.Types.ObjectId, ref: 'Users' },
     isActive: { type: Schema.Types.Boolean, required, default: false },
     fishDetails: { type: fishesDetailsSchema, required },
+    hasSick: { type: Boolean, required, default: false },
   },
   { timestamps: true }
 )
 
-export const WaterTankModel = model<WaterTankI, WaterTankModel>('WaterTanks', waterTanksSchema)
+export const WaterTankModel = model<WaterTankI>('WaterTanks', waterTanksSchema)

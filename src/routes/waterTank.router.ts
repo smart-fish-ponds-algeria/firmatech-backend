@@ -8,6 +8,7 @@ waterTanksRouter.route('/').get(WaterTankController.getAllWaterTanks)
 waterTanksRouter.route('/active').get(WaterTankController.getWaterTanksByStat)
 waterTanksRouter.route('/user/:userId').get(WaterTankController.getUserWaterTanks)
 waterTanksRouter.route('/:tankId').get(WaterTankController.getWaterTank)
+waterTanksRouter.route('/:tankId').put(WaterTankController.updateWaterTankFishDetails)
 waterTanksRouter.route('/:tankId').delete(WaterTankController.deleteWaterTank)
 
 export default waterTanksRouter
