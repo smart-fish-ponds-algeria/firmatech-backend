@@ -71,3 +71,4 @@ export async function sendWelcomeEmailTemplate(
     throw error
   }
 }
+// getAllDayReports

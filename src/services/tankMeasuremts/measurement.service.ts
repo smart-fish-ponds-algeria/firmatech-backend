@@ -52,4 +52,30 @@ export class TankMeasurementServices {
       })
     }
   }
+  static async getAllDayTankMeasuremnts(tankId: ObjectId) {
+    try {
+      const startOfDay = new Date()
+      startOfDay.setHours(0, 0, 0, 0)
+      const endTime = new Date()
+      endTime.setHours(23, 35, 0, 0)
+
+      const tankMeasurements = await TankMeasurementsModel.find({
+        tankId: tankId,
+        timestamp: {
+          $gte: startOfDay,
+          $lt: endTime,
+        },
+      })
+
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
+      const msg = formatString(resp.message, tankMeasurements)
+      userLogger.info(msg, { type: resp.type })
+      return new SuccessResponseC(resp.type, tankMeasurements, msg, HttpCodes.Accepted.code)
+    } catch (err) {
+      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
+      return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
+        error: (err as Error).message,
+      })
+    }
+  }
 }

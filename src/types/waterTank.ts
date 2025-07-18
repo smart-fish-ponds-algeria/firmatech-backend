@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongoose'
 
 export interface WaterTankI {
+  _id?: ObjectId
   details: WaterTankDetails
   responsible: ObjectId
   isActive: boolean

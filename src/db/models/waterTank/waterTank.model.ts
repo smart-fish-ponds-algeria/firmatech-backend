@@ -3,7 +3,7 @@ import { FishedDetails, WaterTankDetails, WaterTankI } from '../../../types/wate
 
 const required = true
 
-export interface WaterTankD extends Document<WaterTankI>, WaterTankI {}
+export interface WaterTankD extends Document<WaterTankI> {}
 
 export interface WaterTankModel extends Model<WaterTankD> {}
 

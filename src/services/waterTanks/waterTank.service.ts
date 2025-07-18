@@ -1,10 +1,12 @@
 import { ObjectId } from 'mongoose'
 import { HttpCodes } from '../../config/Errors'
 import { formatString } from '../../utils/Strings'
-import { SuccessResponseC, throwLocalizedErrorResponse } from '../services.response'
+import { ErrorResponseC, SuccessResponseC, throwLocalizedErrorResponse } from '../services.response'
 import userLogs, { IUserLogs, userLogger } from './user.logs'
 import { WaterTankModel } from '../../db/models/waterTank/waterTank.model'
 import { WaterTankI } from '../../types/waterTank'
+import { TankMeasurementsI } from '../../types/tankMeasurements'
+import { TankMeasurementServices } from '../tankMeasuremts/measurement.service'
 export class WaterTankServices {
   static async getWaterTank(tankId: ObjectId) {
     try {
@@ -83,5 +85,26 @@ export class WaterTankServices {
         error: (err as Error).message,
       })
     }
+  }
+  static async getAllWaterTanksMeasures() {
+    const waterTanksResult = await WaterTankServices.getAllWaterTanks()
+    if (waterTanksResult instanceof ErrorResponseC) throw waterTanksResult
+    const waterTanks = waterTanksResult.data as WaterTankI[]
+    let waterTanksMeasures: {
+      tankId: ObjectId
+      measures: TankMeasurementsI[]
+    }[] = []
+    for (let index = 0; index < waterTanks.length; index++) {
+      const result = await TankMeasurementServices.getAllDayTankMeasuremnts(
+        waterTanks[index]?._id as any
+      )
+      if (result instanceof SuccessResponseC) {
+        waterTanksMeasures.push({
+          tankId: waterTanks[index]?._id!,
+          measures: result.data as TankMeasurementsI[],
+        })
+      }
+    }
+    return waterTanksMeasures
   }
 }

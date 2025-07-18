@@ -1,6 +1,7 @@
 import express from 'express'
 import './config/EnvProvider'
 import cookieParser from 'cookie-parser'
+import * as cron from 'node-cron'
 import cors from 'cors'
 import { errorMiddleware } from './utils/Errors'
 import { ErrorResponse } from './utils/Response'
@@ -10,6 +11,7 @@ import SetRouters from './routes/index'
 import multer from 'multer'
 import { IN_PRODUCTION, NODE_ENV, PORT, SESSION_SECRET } from './config/EnvProvider'
 import session from 'express-session'
+import { fetchingMeasureScheduler } from './tasks/scheduler'
 export const app = express()
 app.use(
   session({
@@ -25,11 +27,7 @@ app.use(
 
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:3000/',
-      'http://localhost:3001',
-    ],
+    origin: ['http://localhost:3000', 'http://localhost:3000/', 'http://localhost:3001'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
@@ -72,6 +70,13 @@ if (NODE_ENV !== 'test') {
       console.log(`|${' '.repeat(n)}${port_msg}${' '.repeat(n)}|`)
       console.log(`|${' '.repeat(m)}${url_msg}${' '.repeat(m)}|`)
       console.log(' ' + '-'.repeat(max_length))
+      cron.schedule('35 23 * * *', async () => {
+        try {
+          await fetchingMeasureScheduler()
+        } catch (err) {
+          console.error('Error running the scheduled task:', err)
+        }
+      })
     })
   })
 }
