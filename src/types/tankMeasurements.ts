@@ -10,4 +10,6 @@ export interface TankMeasurementsI {
   nitrite: number
   nitrate: number
   ammonia: number
+  temperature: number
+  O2: number
 }

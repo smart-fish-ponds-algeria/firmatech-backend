@@ -13,6 +13,8 @@ const tankMeasurementSchema = new Schema<TankMeasurementsI>(
     pH: { type: Number, required },
     salinity: { type: Number, required },
     suspended_solids: { type: Number, required },
+    O2: { type: Number, required },
+    temperature: { type: Number, required },
     timestamp: { type: String, required },
     tankId: { type: Schema.Types.ObjectId, ref: 'WaterTanks' },
   },
