@@ -5,12 +5,15 @@ import userRouter from './user.router'
 import fcmTokenRouter from './fcmtoken.router'
 import testRouter from './test.router'
 import adminRouter from './admin/admin.router'
-
+import measurementsRouter from './measurement.router'
+import waterTanksRouter from './waterTank.router'
 
 export default function SetRouters(app: Application) {
   app.use('/', indexRouter)
   app.use('/auth', authRouter)
   app.use('/users', userRouter)
+  app.use('/waterTanks', waterTanksRouter)
+  app.use('/measurements', measurementsRouter)
   app.use('/fcmTokens', fcmTokenRouter)
   app.use('/test', testRouter)
   app.use('/admin', adminRouter)
