@@ -42,4 +42,15 @@ export class TankMeasurementController {
       catchErrorResponse(err, res, resp)
     }
   }
+  static async getTankLatestMeasuremnts(req: Request, res: Response) {
+    try {
+      const { tankId } = req.params
+      const tankIdObj = convertToObjectId(tankId)
+      const result = await TankMeasurementServices.getLatestTankMeasuremnt(tankIdObj)
+      return handleResponseConversion(res, result)
+    } catch (err) {
+      const resp = authLogs.LOGIN_ERROR_GENERIC
+      catchErrorResponse(err, res, resp)
+    }
+  }
 }
