@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FirmaTech Email Template</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        padding: 3rem;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+      }
+
+      .emailVerification {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #4318ff;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .hi {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .desc1,
+      .desc2 {
+        font-size: 0.95rem;
+        color: #555d77;
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+      }
+
+      .verificationCode {
+        margin: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        color: #485585;
+      }
+
+      .verificationCodeLabel {
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+
+      .code {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: #4318ff;
+        letter-spacing: 3px;
+      }
+
+      .verifyStoreBtn {
+        display: inline-block;
+        margin-top: 2rem;
+        background: linear-gradient(135deg, #4318ff, #7f5dff);
+        color: #fff;
+        text-decoration: none;
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+        box-shadow: 0 8px 20px rgba(67, 24, 255, 0.3);
+      }
+
+      .verifyStoreBtn:hover {
+        background: linear-gradient(135deg, #3211c8, #6949ff);
+      }
+
+      @media (max-width: 480px) {
+        .emailVerification {
+          font-size: 1.5rem;
+        }
+
+        .code {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="emailVerification">تأكيد البريد الإلكتروني</h1>
+      <p class="hi">مرحبًا {{lastName}}،</p>
+      <p class="desc1">
+        مرحبًا بك في FirmaTech! لبدء استخدام حسابك، يرجى تأكيد عنوان بريدك الإلكتروني.
+      </p>
+      <p class="desc2">أدخل رمز التحقق أدناه لتأكيد بريدك الإلكتروني:</p>
+      <div class="verificationCode">
+        <span class="verificationCodeLabel">رمز التحقق:</span>
+        <span class="code">{{verificationCode}}</span>
+      </div>
+      <p class="desc2">
+        رمز التحقق هذا صالح لمدة 3 دقائق. إذا انتهت صلاحيته، يرجى طلب رمز جديد.
+      </p>
+    </div>
+  </body>
+</html>

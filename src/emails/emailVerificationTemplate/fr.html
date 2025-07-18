@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vérification d'adresse e-mail</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .container {
+        width: 100%;
+        min-height: 100vh;
+        background-image: url('https://res.cloudinary.com/dm2zwzfro/image/upload/fl_preserve_transparency/v1723459096/Mask_group_lzlv5v.jpg?_s=public-apps');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+      }
+
+      .innerContainer {
+        width: 70%;
+        max-width: 600px;
+        min-width: 340px;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 8rem;
+      }
+
+      .logo {
+        position: absolute;
+        margin-left: -20px;
+        margin-top: 2rem;
+        height: auto;
+        max-width: 300px;
+        min-width: 150px;
+      }
+
+      .mainContainer {
+        position: relative;
+        width: 100%;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        padding: 3rem;
+        margin-top: 20px;
+        box-shadow: 0 10px 100px rgba(0, 0, 0, 0.5);
+      }
+
+      .textOutside {
+        position: relative;
+        margin-top: 2rem;
+        color: white;
+        font-size: 13px;
+        word-spacing: 2px;
+        line-height: 1.5;
+      }
+
+      .emailVerification {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #4318ff;
+        margin-bottom: 1.5rem;
+      }
+
+      .hi {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 0.25rem;
+      }
+
+      .desc1,
+      .desc2 {
+        font-size: 0.95rem;
+        color: #555d77;
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+      }
+
+      .verificationCode {
+        margin: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        color: #485585;
+      }
+
+      .verificationCodeLabel {
+        font-weight: 500;
+        margin-right: 0.5rem;
+      }
+
+      .code {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: #4318ff;
+        letter-spacing: 3px;
+      }
+
+      .verifyStoreBtn {
+        display: inline-block;
+        margin-top: 2rem;
+        background: linear-gradient(135deg, #4318ff, #7f5dff);
+        color: #fff;
+        text-decoration: none;
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+        box-shadow: 0 8px 20px rgba(67, 24, 255, 0.3);
+      }
+
+      .verifyStoreBtn:hover {
+        background: linear-gradient(135deg, #3211c8, #6949ff);
+      }
+
+      @media (max-width: 480px) {
+        .emailVerification {
+          font-size: 1.5rem;
+        }
+
+        .code {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="innerContainer">
+        <img
+          class="logo"
+          src="https://res.cloudinary.com/dm2zwzfro/image/upload/fl_preserve_transparency/v1723391642/whiteLogo_zgxjis.jpg?_s=public-apps"
+          alt="Logo FirmaTech"
+        />
+        <div class="mainContainer">
+          <h1 class="emailVerification">Vérifiez votre adresse e-mail</h1>
+          <p class="hi">Bonjour {{lastName}},</p>
+          <p class="desc1">
+            Bienvenue chez FirmaTech ! Pour commencer à utiliser votre compte, veuillez vérifier
+            votre adresse e-mail.
+          </p>
+          <p class="desc2">
+            Saisissez le code de vérification ci-dessous pour confirmer votre adresse e-mail :
+          </p>
+          <div class="verificationCode">
+            <span class="verificationCodeLabel">Code de vérification :</span>
+            <span class="code">{{verificationCode}}</span>
+          </div>
+          <p class="desc2">
+            Ce code est valable pendant 3 minutes. S’il expire, veuillez en demander un nouveau.
+          </p>
+          <p class="textOutside">
+            Si vous avez des questions ou besoin d’aide, n’hésitez pas à contacter l’équipe de support FirmaTech.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

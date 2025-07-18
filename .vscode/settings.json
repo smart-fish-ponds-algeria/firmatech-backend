@@ -1,0 +1,33 @@
+{
+  "search.useIgnoreFiles": false,
+  "search.useParentIgnoreFiles": true,
+  "liveServer.settings.port": 5501,
+  "todohighlight.keywords": [
+    {
+      "text": "RAYAN:",
+      "color": "#FFE6E1",
+      "backgroundColor": "#FF3F33",
+      "overviewRulerColor": "#FF3F33"
+    },
+    {
+      "text": "AYMEN:",
+      "color": "#641B2E",
+      "fontWeight": "bold",
+      "backgroundColor": "#FBDB93",
+      "overviewRulerColor": "#FBDB93"
+    },
+    {
+      "text": "OUSSAMA:",
+      "color": "#866C09",
+      "fontWeight": "bold",
+      "backgroundColor": "#E0BB04",
+      "overviewRulerColor": "#0A48D4"
+    },
+    {
+      "text": "ISLAM:",
+      "color": "#FAFFCA",
+      "backgroundColor": "#5A827E",
+      "overviewRulerColor": "#5A827E"
+    }
+  ]
+}
