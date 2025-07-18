@@ -12,7 +12,28 @@ import multer from 'multer'
 import { IN_PRODUCTION, NODE_ENV, PORT, SESSION_SECRET } from './config/EnvProvider'
 import session from 'express-session'
 import { fetchingMeasureScheduler } from './tasks/scheduler'
+import swaggerUi from 'swagger-ui-express'
+import swaggerJSDoc from 'swagger-jsdoc'
+
 export const app = express()
+const swaggerOptions: swaggerJSDoc.Options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'My TS API',
+      version: '1.0.0',
+      description: 'API documentation with Swagger and TypeScript',
+    },
+    servers: [
+      {
+        url: `http://localhost:${PORT}`,
+      },
+    ],
+  },
+  apis: ['./src/routes/*.ts'], // Path to your API docs
+}
+const swaggerSpec = swaggerJSDoc(swaggerOptions)
+
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -46,7 +67,7 @@ app.use(express.urlencoded({ extended: true }))
 SetRouters(app)
 
 app.set('trust proxy', true)
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 // Fallback route for undefined routes
 app.use('*', (_req, res) =>
   ErrorResponse(res, HttpCodes.NotImplemented.code, HttpCodes.NotImplemented.message)
