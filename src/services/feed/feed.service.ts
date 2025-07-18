@@ -2,10 +2,10 @@ import { ObjectId } from 'mongoose'
 import { HttpCodes } from '../../config/Errors'
 import { formatString } from '../../utils/Strings'
 import { SuccessResponseC, throwLocalizedErrorResponse } from '../services.response'
-import userLogs, { IUserLogs, userLogger } from './user.logs'
 import { TankMeasurementsModel } from '../../db/models/TankMeasurements/TankMeasurementsI.model'
 import { FeedI } from '../../types/feed'
 import { FeedModel } from '../../db/models/feedTime/feed.model'
+import userLogs, { IUserLogs, userLogger } from '../user/user.logs'
 export class FeedServices {
   static async getAllTankFeeds(tankId: ObjectId) {
     try {

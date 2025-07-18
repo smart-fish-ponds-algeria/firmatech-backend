@@ -73,9 +73,11 @@ export class WaterTankController {
   static async updateWaterTankFishDetails(req: Request, res: Response) {
     try {
       const { tankId } = req.params
-      const { weight, IsSick } = req.body
+      console.log(' req.body  :', req.body)
+
+      const { weight, isSick } = req.body
       const tankIdObj = convertToObjectId(tankId)
-      const result = await WaterTankServices.updateWaterTankFishDetails(tankIdObj, weight, IsSick)
+      const result = await WaterTankServices.updateWaterTankFishDetails(tankIdObj, weight, isSick)
       return handleResponseConversion(res, result)
     } catch (err) {
       const resp = authLogs.LOGIN_ERROR_GENERIC

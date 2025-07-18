@@ -2,9 +2,9 @@ import { ObjectId } from 'mongoose'
 import { HttpCodes } from '../../config/Errors'
 import { formatString } from '../../utils/Strings'
 import { SuccessResponseC, throwLocalizedErrorResponse } from '../services.response'
-import userLogs, { IUserLogs, userLogger } from './user.logs'
 import { TankMeasurementsModel } from '../../db/models/TankMeasurements/TankMeasurementsI.model'
 import { TankMeasurementsI } from '../../types/tankMeasurements'
+import userLogs, { IUserLogs, userLogger } from '../user/user.logs'
 export class TankMeasurementServices {
   static async getAllTankMeasuremnts(tankId: ObjectId) {
     try {
