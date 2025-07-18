@@ -7,6 +7,7 @@ import {
   UpdateUserlang,
   UpdateUserEmail,
   UpdateUserPassword,
+  GetAllUsers,
 } from '../controllers/user.controller'
 import {
   getUserValidators,
@@ -20,6 +21,7 @@ import { verifyUserAuthMiddleware } from '../middlewares/auth'
 
 const userRouter = Router()
 
+userRouter.route('/').get(GetAllUsers)
 userRouter.route('/:id').get(getUserValidators, validator, GetUser)
 userRouter
   .route('/updatePassword')

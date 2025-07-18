@@ -18,6 +18,17 @@ export const GetUser = async (req: MyRequest<UserD>, res: Response) => {
   }
 }
 
+export const GetAllUsers = async (req: MyRequest<UserD>, res: Response) => {
+  try {
+    const id = req.params.id as unknown as ObjectId
+    const users = await UserServices.getAllUsersAdmin()
+    handleResponseConversion(res, users)
+  } catch (err: unknown) {
+    const resp = userLogs.USER_UPDATE_ERROR_GENERIC
+    catchErrorResponse(err, res, resp)
+  }
+}
+
 export const DeleteUser = async (req: MyRequest<UserD>, res: Response) => {
   const id = req.params.id as unknown as ObjectId
   const result = await UserServices.executeDeleteUser(id)
