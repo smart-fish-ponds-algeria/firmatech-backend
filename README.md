@@ -1,6 +1,7 @@
-# 🔔 Notification API Service
 
-A backend service built with **TypeScript** to manage notifications (in-app and email) for both users and admins. The project includes RESTful endpoints, environment management, code formatting, and Docker support.
+# 🔔 RESTful API Service
+
+A backend service built with **TypeScript**. It includes full CRUD for users, admins, and all relevant entities. It also manages notifications (in-app and email) for both user types. The project includes RESTful endpoints, environment management, and code formatting.
 
 ---
 
@@ -25,12 +26,12 @@ A backend service built with **TypeScript** to manage notifications (in-app and 
 
 ## 🚀 Features
 
-- 📬 Send email and in-app alerts  
-- 👤 Admin and User endpoints  
-- ⚙️ TypeScript support  
-- ✅ ESLint and Prettier integrated  
-- 🐳 Docker-ready  
-- 🔄 Git hooks with Husky  
+* Send email and in-app alerts
+* Endpoints for Admin, User, WaterTank, Feed, Measurement, and more
+* A scheduler that fetches all measurements of a water tank each night and sends the data to an AI agent to generate reports
+* And much more
+
+<img width="1039" height="1154" alt="Hack" src="https://github.com/user-attachments/assets/f9007f1d-4859-4cbf-96b3-9818d6b0b485" />
 
 ---
 
@@ -69,8 +70,8 @@ npm run dev
 
 ## 📬 Notification System
 
-- **Create Alert**: API endpoint to send an in-app notification.  
-- **Send Email**: API endpoint to send emails using SMTP credentials.  
+* **Create Alert**: API endpoint to send an in-app notification
+* **Send Email**: API endpoint to send emails using SMTP credentials
 
 APIs are defined inside the `src/` directory.
 
@@ -85,22 +86,11 @@ npm run build       # Build project (TypeScript to JS)
 
 ---
 
-## 🐳 Docker Usage
-
-Build and run the app inside a Docker container:
-
-```bash
-docker build -t notification-api .
-docker run -p 3000:3000 notification-api
-```
-
----
-
 ## 🧹 Code Quality
 
-- ✅ ESLint: `.eslint.config.mjs`
-- 🎨 Prettier: `.prettierrc`
-- 🧼 Git Hooks via Husky: `.husky/`
+* ✅ ESLint: `.eslint.config.mjs`
+* 🎨 Prettier: `.prettierrc`
+* 🧼 Git Hooks via Husky: `.husky/`
 
 Run manually:
 
@@ -111,6 +101,8 @@ npm run format
 
 ---
 
-## 📄 License
+## 📝 Extras
 
-MIT © 2025 Your Name
+* Swagger is available at `/api-docs`, though it’s worth noting that it wasn’t fully completed.
+
+---
