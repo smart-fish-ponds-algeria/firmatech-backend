@@ -1,7 +1,5 @@
 import { Request, Response } from 'express'
-import { UserD } from '../db/models/user/user.model'
 import { catchErrorResponse } from '../utils/Response'
-import { MyRequest } from '../types/Express'
 import authLogs from '../services/auth/auth.logs'
 import { TankMeasurementServices } from '../services/tankMeasuremts/measurement.service'
 import { TankMeasurementsI } from '../types/tankMeasurements'

@@ -39,10 +39,12 @@ export class FeedServices {
     try {
       const newfeed = new FeedModel(feed)
       await newfeed.save()
-      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
-      const msg = formatString(resp.message, newfeed)
-      userLogger.info(msg, { type: resp.type })
-      return new SuccessResponseC(resp.type, newfeed, msg, HttpCodes.Accepted.code)
+      return new SuccessResponseC(
+        'Feed Created successfully',
+        newfeed,
+        'msg',
+        HttpCodes.Accepted.code
+      )
     } catch (err) {
       const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
       return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {

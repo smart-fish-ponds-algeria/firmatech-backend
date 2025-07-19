@@ -8,6 +8,7 @@ export interface FeedD extends Document<FeedI>, FeedI {}
 const feedSchema = new Schema<FeedI>(
   {
     tankId: { type: Schema.Types.ObjectId, ref: 'WaterTanks', required },
+    qte: { type: Schema.Types.Number, required },
   },
   { timestamps: true }
 )
