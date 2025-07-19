@@ -29,5 +29,12 @@
       "backgroundColor": "#5A827E",
       "overviewRulerColor": "#5A827E"
     }
+  ],
+  "python-envs.pythonProjects": [
+    {
+      "path": "src/db/models/reports copy",
+      "envManager": "ms-python.python:venv",
+      "packageManager": "ms-python.python:pip"
+    }
   ]
 }

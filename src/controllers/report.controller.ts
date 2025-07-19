@@ -4,7 +4,8 @@ import { TankMeasurementServices } from '../services/tankMeasuremts/measurement.
 import { handleResponseConversion } from '../utils/handleResponseConversion'
 import { ReportI } from '../types/report'
 
-export class TankMeasurementController {
+// TODO: FIX THIS
+export class ReportController {
   static async createReport(req: Request, res: Response) {
     try {
       const report = req.body as ReportI

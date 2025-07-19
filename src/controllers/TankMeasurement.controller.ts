@@ -11,6 +11,7 @@ import { UserServices } from '../services/user/user.service'
 import { WaterTankI } from '../types/waterTank'
 import { UserD } from '../db/models/user/user.model'
 import { sendEmailAlertTemplate } from '../emails/alertTemplate/app'
+import { AlertServices } from '../services/alerts/alerts.service'
 
 export function detectAnomalies(data: TankMeasurementsI): {
   anomalies: string
@@ -65,6 +66,8 @@ export class TankMeasurementController {
   static async createMeasurement(req: Request, res: Response) {
     try {
       const measurement = req.body as TankMeasurementsI
+      const result = await TankMeasurementServices.createTankMeasuremnt(measurement)
+
       const { anomaliDetected, anomalies } = detectAnomalies(measurement)
       if (anomaliDetected) {
         const waterTankResult = await WaterTankServices.getWaterTank(measurement.tankId)
@@ -80,6 +83,10 @@ export class TankMeasurementController {
             anomalies,
             measurement.tankId.toString().slice(0, 4)
           )
+          await AlertServices.createAlert({
+            anomalies: anomalies,
+            tankId: waterTank[0]._id!,
+          })
 
           // TODO: RYAD: IF THERE IS TIME
           // sendPushNotification(user.expoToken!, 'Alert', 'Alert', measurement)
@@ -88,7 +95,6 @@ export class TankMeasurementController {
         // })
       }
       console.log('body is :', measurement)
-      const result = await TankMeasurementServices.createTankMeasuremnt(measurement)
       return handleResponseConversion(res, result)
     } catch (err) {
       catchErrorResponse(err, res)
