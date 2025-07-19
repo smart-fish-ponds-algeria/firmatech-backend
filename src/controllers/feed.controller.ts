@@ -15,8 +15,7 @@ export class FeedController {
       const result = await FeedServices.createFeed(feed)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getAllTankFeeds(req: Request, res: Response) {
@@ -26,8 +25,7 @@ export class FeedController {
       const result = await FeedServices.getAllTankFeeds(tankIdObj)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getAllTankMeasuremnts(req: Request, res: Response) {

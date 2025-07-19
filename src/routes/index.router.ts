@@ -20,5 +20,14 @@ indexRouter.get('/', async (req: Request, res: Response): Promise<void> => {
     res.status(500).send('Internal Server Error')
   }
 })
+indexRouter.post('/expo', async (req: Request, res: Response) => {
+  try {
+    const { token } = req.body
+    console.log('Token is : ', token)
+  } catch (error) {
+    console.error('An error occurred:', error)
+    res.status(500).send('Internal Server Error')
+  }
+})
 
 export default indexRouter

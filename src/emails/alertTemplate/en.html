@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Alert Notification</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        background-color: #fff0f0;
+        border-radius: 10px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 50px rgba(255, 0, 0, 0.1);
+        border: 1px solid #ff4d4d;
+      }
+
+      .alertTitle {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #d8000c;
+        margin-bottom: 1.2rem;
+        text-align: center;
+      }
+
+      .greeting {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .message {
+        font-size: 1rem;
+        color: #6b0000;
+        margin: 1rem 0;
+        line-height: 1.5;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .detailsBox {
+        margin-top: 1.5rem;
+        background-color: #ffe5e5;
+        border: 1px dashed #ff4d4d;
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: #8b0000;
+        line-height: 1.6;
+      }
+
+      .detailRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.4rem;
+      }
+
+      .detailLabel {
+        font-weight: 600;
+      }
+
+      .anomaliesBox {
+        margin-top: 1.5rem;
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        color: #856404;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .anomaliesTitle {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .footerNote {
+        margin-top: 2rem;
+        color: #555;
+        font-size: 12px;
+        text-align: center;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="alertTitle">⚠️ Alert !!</h1>
+      <p class="greeting">Hello {{firstName}} {{lastName}},</p>
+      <p class="message">
+        The parameters inside the water tank have exceeded the safety threshold.
+      </p>
+
+      <div class="detailsBox">
+        <div class="detailRow"><span class="detailLabel">Timestamp:</span> <span>{{details.timestamp}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Water Level:</span> <span>{{details.water_level}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Suspended Solids:</span> <span>{{details.suspended_solids}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Salinity:</span> <span>{{details.salinity}}</span></div>
+        <div class="detailRow"><span class="detailLabel">pH:</span> <span>{{details.pH}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Nitrite:</span> <span>{{details.nitrite}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Nitrate:</span> <span>{{details.nitrate}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Ammonia:</span> <span>{{details.ammonia}}</span></div>
+        <div class="detailRow"><span class="detailLabel">Temperature:</span> <span>{{details.temperature}}</span></div>
+        <div class="detailRow"><span class="detailLabel">O₂:</span> <span>{{details.O2}}</span></div>
+      </div>
+
+      <div class="anomaliesBox">
+        <div class="anomaliesTitle">Detected Anomalies:</div>
+        <div>{{anomalies}}</div>
+      </div>
+
+      <div class="footerNote">
+        Please check the system immediately.
+      </div>
+    </div>
+  </body>
+</html>

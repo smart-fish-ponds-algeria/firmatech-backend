@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { catchErrorResponse } from '../utils/Response'
-import authLogs from '../services/auth/auth.logs'
 import { handleResponseConversion } from '../utils/handleResponseConversion'
 import { WaterTankI } from '../types/waterTank'
 import { WaterTankServices } from '../services/waterTanks/waterTank.service'
@@ -14,8 +13,7 @@ export class WaterTankController {
       const result = await WaterTankServices.createWaterTank(waterTank)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getWaterTank(req: Request, res: Response) {
@@ -25,8 +23,7 @@ export class WaterTankController {
       const result = await WaterTankServices.getWaterTank(tankIdObj)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getAllWaterTanks(req: Request, res: Response) {
@@ -34,8 +31,7 @@ export class WaterTankController {
       const result = await WaterTankServices.getAllWaterTanks()
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getUserWaterTanks(req: Request, res: Response) {
@@ -45,8 +41,7 @@ export class WaterTankController {
       const result = await WaterTankServices.getUserWaterTanks(userIdObj)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async getWaterTanksByStat(req: Request, res: Response) {
@@ -54,8 +49,7 @@ export class WaterTankController {
       const result = await WaterTankServices.getActiveWaterTanks()
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
   static async deleteWaterTank(req: Request, res: Response) {
@@ -65,8 +59,7 @@ export class WaterTankController {
       const result = await WaterTankServices.deleteWaterTank(tankIdObj)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
 
@@ -80,8 +73,7 @@ export class WaterTankController {
       const result = await WaterTankServices.updateWaterTankFishDetails(tankIdObj, weight, isSick)
       return handleResponseConversion(res, result)
     } catch (err) {
-      const resp = authLogs.LOGIN_ERROR_GENERIC
-      catchErrorResponse(err, res, resp)
+      catchErrorResponse(err, res)
     }
   }
 }

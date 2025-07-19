@@ -1,7 +1,6 @@
 import { Model, Schema, model, Document } from 'mongoose'
 import bcrypt from 'bcrypt'
 import { validateEmail } from '../../../utils/Function'
-import validator from 'validator'
 
 const required = true
 
@@ -19,6 +18,7 @@ const usersSchema = new Schema<UserI>(
     firstName: { type: String, required },
     lastName: { type: String, required },
     LastsmsVerificationDate: { type: Number, required: false },
+    expoToken: { type: String, required: false },
     email: {
       type: String,
       required,

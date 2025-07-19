@@ -26,6 +26,11 @@ function CheckOptionalEnv(envField: string, replacedBy: string = 'undefined'): s
 }
 // ...existing code...
 export const NODE_ENV = CheckRequiredEnv('NODE_ENV', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)
+export const FastApi_BACK_EN_URL = CheckRequiredEnv(
+  'FastApi_BACK_EN_URL',
+  ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
+)
+
 export const MONGODB_URI = CheckRequiredEnv('MONGO_DB_URI', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)
 export const JWT_SECRET = CheckRequiredEnv('JWT_SECRET', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)
 export const MONGODB_NAME = CheckRequiredEnv('MONGODB_NAME', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)

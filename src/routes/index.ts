@@ -1,4 +1,4 @@
-import { Application } from 'express'
+import { Application, Request } from 'express'
 import indexRouter from './index.router'
 import authRouter from './auth/auth.router'
 import userRouter from './user.router'

@@ -7,6 +7,7 @@ import { WaterTankI } from '../../types/waterTank'
 import { TankMeasurementsI } from '../../types/tankMeasurements'
 import { TankMeasurementServices } from '../tankMeasuremts/measurement.service'
 import userLogs, { IUserLogs, userLogger } from '../user/user.logs'
+import { FeedServices } from '../feed/feed.service'
 export class WaterTankServices {
   static async getWaterTank(tankId: ObjectId) {
     try {
@@ -90,17 +91,20 @@ export class WaterTankServices {
     if (waterTanksResult instanceof ErrorResponseC) throw waterTanksResult
     const waterTanks = waterTanksResult.data as WaterTankI[]
     let waterTanksMeasures: {
-      tankId: ObjectId
+      tank: WaterTankI
       measures: TankMeasurementsI[]
+      number_of_consumed_food: number
     }[] = []
     for (let index = 0; index < waterTanks.length; index++) {
       const result = await TankMeasurementServices.getAllDayTankMeasuremnts(
         waterTanks[index]?._id as any
       )
+      const foodQte = await FeedServices.getAllDayTankFeed(waterTanks[index]?._id as any)
       if (result instanceof SuccessResponseC) {
         waterTanksMeasures.push({
-          tankId: waterTanks[index]?._id!,
+          tank: waterTanks[index],
           measures: result.data as TankMeasurementsI[],
+          number_of_consumed_food: foodQte,
         })
       }
     }
@@ -128,18 +132,13 @@ export class WaterTankServices {
   ) {
     try {
       let waterTank = await WaterTankModel.findOneAndUpdate({ _id: tankId })
-      if (!waterTank) throw Error('Not found')
-      console.log('IsSick : ', IsSick)
-
+      if (!waterTank) return new ErrorResponseC('Water Tank not Found', 404, 'Water Tank not Found')
       waterTank.hasSick = IsSick
       waterTank.fishDetails = {
         ...waterTank.fishDetails,
         fish_weight: weight,
       }
-      console.log('new wo:', waterTank)
-
       await waterTank.save()
-      // const waterTank = await WaterTankModel.findByIdAndUpdate({ _id: tankId }, {})
       const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
       const msg = formatString(resp.message, waterTank)
       return new SuccessResponseC(resp.type, waterTank, msg, HttpCodes.Accepted.code)

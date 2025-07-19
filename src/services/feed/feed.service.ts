@@ -66,28 +66,37 @@ export class FeedServices {
       })
     }
   }
-  static async getAllDayTankMeasuremnts(tankId: ObjectId) {
+  static async getAllDayTankFeed(tankId: ObjectId): Promise<number> {
     try {
       const startOfDay = new Date()
       startOfDay.setHours(0, 0, 0, 0)
       const endTime = new Date()
       endTime.setHours(23, 35, 0, 0)
 
-      const tankMeasurements = await TankMeasurementsModel.find({
-        tankId: tankId,
-        timestamp: {
-          $gte: startOfDay,
-          $lt: endTime,
+      const totalQte = await FeedModel.aggregate([
+        {
+          $match: {
+            tankId: tankId,
+            createAt: {
+              $gte: startOfDay,
+              $lt: endTime,
+            },
+          },
         },
-      })
+        {
+          $group: {
+            _id: null,
+            totalQte: { $sum: '$qte' },
+          },
+        },
+      ])
 
-      const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_SUCCESS
-      const msg = formatString(resp.message, tankMeasurements)
-      userLogger.info(msg, { type: resp.type })
-      return new SuccessResponseC(resp.type, tankMeasurements, msg, HttpCodes.Accepted.code)
+      const countQte = totalQte[0]?.totalQte || 0
+
+      return countQte
     } catch (err) {
       const resp: ICode<IUserLogs> = userLogs.GET_ALL_USER_ERROR_GENERIC
-      return throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
+      throw throwLocalizedErrorResponse(resp, HttpCodes.InternalServerError.code, userLogger, {
         error: (err as Error).message,
       })
     }

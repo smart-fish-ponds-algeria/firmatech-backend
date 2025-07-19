@@ -16,6 +16,7 @@ declare interface UserI extends UserAuthI {
   passwordResetExpiry?: number
   skipToken?: string
   fcmTokens: string[]
+  expoToken?: string
   lang?: 'en' | 'fr' | 'ar'
 }
 
