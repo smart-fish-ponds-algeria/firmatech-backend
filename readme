@@ -1,0 +1,31 @@
+
+  
+
+## Main Backend Overview
+This is the main backend repo  it is a RESTful API. It includes full CRUD handle users , admins and all relevent entities that we will explain shortly 
+
+##  Main API Entities
+
+  
+
+## 🚀 Quick Start
+
+
+```bash
+# Install & run
+npm  install
+npm  run dev
+```
+
+  
+
+---
+
+  
+
+## 📝 Extras
+
+*  Swagger can be found in /api-docs but it's worth noting that it wasnt fully finished unfortunatly
+
+  
+
