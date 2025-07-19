@@ -57,18 +57,7 @@ export const SESSION_SECRET = CheckRequiredEnv(
   'SESSION_SECRET',
   ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
 )
-export const FIREBASE_EMAIL = CheckRequiredEnv(
-  'FIREBASE_EMAIL',
-  ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
-)
-export const FIREBASE_PRIVATEKEY = CheckRequiredEnv(
-  'FIREBASE_PRIVATEKEY',
-  ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
-)
-export const FIREBASE_PROJECT_ID = CheckRequiredEnv(
-  'FIREBASE_PROJECT_ID',
-  ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
-)
+
 export const FRONT_URL_PROD = CheckRequiredEnv('FRONT_URL', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)
 export const FRONT_URL_DEV = CheckRequiredEnv(
   'FRONT_URL_DEV',
@@ -110,7 +99,7 @@ export const PORT = CheckOptionalEnv('BACK_PORT', '8080')
 
 /**
  * @description The developer's email address.
- * @default "rayanalllali@gmail.com"
+ * @default "ryadallali0@gmail.com"
  */
 export const DEV_Email = CheckOptionalEnv('DEV_Email', 'rayanalllali@gmail.com')
 
