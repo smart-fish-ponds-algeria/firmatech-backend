@@ -21,7 +21,8 @@ export async function sendEmailAlertTemplate(
     temperature: number
     O2: number
   },
-  anomalies: string
+  anomalies: string,
+  tankId: string
 ) {
   const transporter = nodemailer.createTransport({
     service: service,
@@ -51,6 +52,7 @@ export async function sendEmailAlertTemplate(
     lastName,
     details,
     anomalies,
+    tankId,
   }
 
   // Generate the personalized HTML

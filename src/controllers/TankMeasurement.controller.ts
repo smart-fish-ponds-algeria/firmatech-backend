@@ -72,7 +72,14 @@ export class TankMeasurementController {
           const waterTank = waterTankResult.data as WaterTankI[]
           const userResult = await UserServices.findUser(waterTank[0].responsible)
           const user = userResult.data as UserD
-          sendEmailAlertTemplate(user.email, user.firstName, user.lastName, measurement, anomalies)
+          sendEmailAlertTemplate(
+            user.email,
+            user.firstName,
+            user.lastName,
+            measurement,
+            anomalies,
+            measurement.tankId.toString().slice(0, 4)
+          )
 
           // TODO: RYAD: IF THERE IS TIME
           // sendPushNotification(user.expoToken!, 'Alert', 'Alert', measurement)
