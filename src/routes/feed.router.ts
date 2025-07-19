@@ -57,13 +57,10 @@ feedRouter.route('/').post(FeedController.createFeed)
  *               items:
  *                 type: object
  *                 properties:
- *                   feedId:
- *                     type: string
- *                     example: "feed123"
  *                   tankId:
  *                     type: string
  *                     example: "tank456"
- *                   amount:
+ *                   qte:
  *                     type: number
  *                     example: 5.5
  *                   createdAt:

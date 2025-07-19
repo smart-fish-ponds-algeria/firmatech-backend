@@ -1,9 +1,5 @@
 import mongoose from 'mongoose'
-import {
-  IN_DEVELOPMENT,
-  MONGODB_NAME,
-  MONGODB_URI,
-} from './config/EnvProvider'
+import { IN_DEVELOPMENT, MONGODB_NAME, MONGODB_URI } from './config/EnvProvider'
 import { exitProcess } from './utils/Process'
 import { ExitCodes } from './config/Errors'
 import { setTimeout } from 'timers/promises'

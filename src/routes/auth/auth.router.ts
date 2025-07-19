@@ -20,7 +20,6 @@ import {
 import { Router } from 'express'
 import { validator } from '../../middlewares/validator/validator'
 import { verifyUserAuthMiddleware } from '../../middlewares/auth'
-import { uploadFile } from '../../middlewares/imgUpload'
 import emailVerificationRouter from './verificationEmail.router'
 
 const authRouter = Router()

@@ -74,7 +74,6 @@ export const JWT_SECRET_KEY = CheckRequiredEnv(
   ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD
 )
 
-export const PROJECT_ID = CheckRequiredEnv('PROJECT_ID', ExitCodes.ENV_ERROR_COULDNT_FIND_FIELD)
 /**
  * @description The current working directory of the project.
  */
